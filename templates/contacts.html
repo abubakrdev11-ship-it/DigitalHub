@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block title %}{{ settings.title|default:"DigitalHub" }} — Контакты{% endblock %}
+{% block content %}
+            <section class="contacts">
+                <h1 class="page-title">Контакты</h1>
+                <div class="contacts__grid">
+                    <div class="contacts__info">
+                        <div class="contact-item">
+                            <span class="contact-icon">📞</span>
+                            <strong>Телефон:</strong> {{ settings.phone }}
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon">✉️</span>
+                            <strong>Email:</strong> <a href="mailto:{{ settings.email }}">{{ settings.email }}</a>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon">📍</span>
+                            <strong>Адрес:</strong> {{ settings.address }}
+                        </div>
+                    </div>
+                    <div class="contacts__social">
+                        <h3>Мы в соцсетях</h3>
+                        <ul class="social-list">
+                            {% if settings.twitter %}
+                            <li><a href="{{ settings.twitter }}" target="_blank" rel="noopener">Twitter</a></li>
+                            {% endif %}
+                            {% if settings.instagram %}
+                            <li><a href="{{ settings.instagram }}" target="_blank" rel="noopener">Instagram</a></li>
+                            {% endif %}
+                            {% if settings.youtube %}
+                            <li><a href="{{ settings.youtube }}" target="_blank" rel="noopener">YouTube</a></li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+            </section>
+{% endblock %}

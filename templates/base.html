@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}DigitalHub{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <header class="header">
+        <div class="container header__container">
+            <div class="header__logo">
+                {% if settings.logo %}
+                <img src="{{ settings.logo.url }}" alt="{{ settings.title }}" class="logo-img" style="max-height: 50px;">
+                {% else %}
+                <span class="logo-text">{{ settings.title|default:"DigitalHub" }}</span>
+                {% endif %}
+            </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Меню">
+                <span></span><span></span><span></span>
+            </button>
+            <nav class="nav" id="mainNav">
+                <ul class="nav__list">
+                    <li class="nav__item"><a href="{% url 'index' %}" class="nav__link">Главная</a></li>
+                    <li class="nav__item"><a href="{% url 'about' %}" class="nav__link">О проекте</a></li>
+                    <li class="nav__item"><a href="{% url 'services' %}" class="nav__link">Услуги</a></li>
+                    <li class="nav__item"><a href="{% url 'contacts' %}" class="nav__link">Контакты</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="container">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer__container">
+            <div class="footer__info">
+                <p>&copy; {{ settings.title|default:"DigitalHub" }} {% now "Y" %}</p>
+                <p>{{ settings.phone|default:"+7 (000) 000-00-00" }}</p>
+                <p>{{ settings.email|default:"info@digitalhub.ru" }}</p>
+            </div>
+            <div class="footer__social">
+                {% if settings.twitter %}
+                <a href="{{ settings.twitter }}" class="social-link" target="_blank" rel="noopener">Twitter</a>
+                {% endif %}
+                {% if settings.instagram %}
+                <a href="{{ settings.instagram }}" class="social-link" target="_blank" rel="noopener">Instagram</a>
+                {% endif %}
+                {% if settings.youtube %}
+                <a href="{{ settings.youtube }}" class="social-link" target="_blank" rel="noopener">YouTube</a>
+                {% endif %}
+            </div>
+        </div>
+    </footer>
+
+    <script src="{% static 'js/main.js' %}"></script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

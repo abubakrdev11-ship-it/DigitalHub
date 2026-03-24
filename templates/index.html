@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %}DigitalHub — Главная{% endblock %}
+
+{% block content %}
+            <section class="hero">
+                <h1 class="hero__title">DigitalHub</h1>
+                <p class="hero__description">Современные digital-решения для вашего бизнеса</p>
+            </section>
+
+            <section class="services-preview">
+                <h2 class="section-title">Наши услуги</h2>
+                <div class="services-grid">
+                    {% for service in services|slice:":3" %}
+                    <div class="service-card">
+                        {% if service.image %}
+                        <img src="{{ service.image.url }}" alt="{{ service.title }}" class="service-card__image" style="height: 200px; object-fit: cover;">
+                        {% else %}
+                        <div class="service-card__image-placeholder">🖼️</div>
+                        {% endif %}
+                        <h3 class="service-card__title">{{ service.title }}</h3>
+                        <p class="service-card__description">{{ service.description|truncatewords:20 }}</p>
+                        <div class="service-card__price">{{ service.price }} ₽</div>
+                        <a href="{% url 'services' %}" class="btn btn--outline">Подробнее</a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </section>
+{% endblock %}

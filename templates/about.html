@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block title %}{{ settings.title|default:"DigitalHub" }} — О проекте{% endblock %}
+{% block content %}
+            <section class="about">
+                <h1 class="page-title">О проекте</h1>
+                <div class="about__content">
+                    {{ settings.description|linebreaks }}
+                </div>
+            </section>
+{% endblock %}
